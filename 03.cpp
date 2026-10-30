@@ -5,6 +5,7 @@
 double** create_two_dim_array(int size_x, int size_y);
 void fill_two_dim_array(double** mass2d, int size_x, int size_y);
 void print_two_dim_array(double** mass2d, int size_x, int size_y);
+void delete_two_dim_array(double** mass2d, int size_x);
 
 
 double** create_two_dim_array(int size_x, int size_y)
@@ -33,10 +34,6 @@ double** create_two_dim_array(int size_x, int size_y)
 
 void fill_two_dim_array(double **mass2d, int size_x, int size_y)
 {
-	int tmp{ 1 };
-
-	double* mass1d;
-
 	for (int i = 0; i < size_x; i++)
 	{
 		for (int j = 0; j < size_y; j++)
@@ -58,6 +55,14 @@ void print_two_dim_array(double** mass2d, int size_x, int size_y)
 	}
 }
 
+void delete_two_dim_array(double** mass2d, int size_x)
+{
+	for (int i = 0; i < size_x; i++)
+	{
+		delete[] mass2d[i];
+	}
+	delete[] mass2d;
+}
 
 
 int main(int argc, char** argv)
@@ -87,7 +92,8 @@ int main(int argc, char** argv)
 	print_two_dim_array(mass, size_x, size_y);
 
 
-	delete[] mass;
+	delete_two_dim_array(mass, size_x);
+
 
 	return(0);
 }
